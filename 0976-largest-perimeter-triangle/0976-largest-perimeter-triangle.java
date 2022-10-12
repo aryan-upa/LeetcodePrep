@@ -4,7 +4,7 @@ class Solution {
 
         int iniPos = nums.length - 3;
 		while (iniPos >= 0) {
-			if (isValidTriangle(nums[iniPos + 2], nums[iniPos], nums[iniPos + 1]))
+			if (nums[iniPos + 2] < nums[iniPos + 1] + nums[iniPos])
 				return nums[iniPos] + nums[iniPos + 1] + nums[iniPos + 2];
 			iniPos--;
 		}

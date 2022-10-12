@@ -10,7 +10,7 @@ class Solution {
 	private void getAreaPerCombination(int[][] points, int currentPoint, int[][] triangle, int currI) {
 		if (currentPoint == 3) {
             int[] p1 = triangle[0], p2 = triangle[1], p3 = triangle[2];
-            double area = (double) Math.abs(p1[0]*(p2[1] - p3[1]) + p2[0]*(p3[1] - p1[1]) + p3[0]*(p1[1] - p2[1])) / 2.0;
+            double area = Math.abs(p1[0]*(p2[1] - p3[1]) + p2[0]*(p3[1] - p1[1]) + p3[0]*(p1[1] - p2[1])) / 2.0;
 			maxArea = Math.max(maxArea, area);
 			return;
 		}

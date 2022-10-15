@@ -1,11 +1,11 @@
 class Solution {
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
 		List<List<Integer>> output = new ArrayList<>();
-		combinationSumHelper(candidates, target, new ArrayList<>(), 0, output);
+		combinationSumHelper(candidates, target, new ArrayList<>(), 0, 0, output);
 		return output;
 	}
 
-	public void combinationSumHelper(int[] candidates, int target, ArrayList<Integer> res, int currIdx, List<List<Integer>> output) {
+	public void combinationSumHelper(int[] candidates, int target, ArrayList<Integer> res, int currIdx, int tc, List<List<Integer>> output) {
 		if (target < 0)
 			return;
 
@@ -15,10 +15,9 @@ class Solution {
 		}
 
 		for (int i = currIdx; i < candidates.length; i ++) {
-			int candidate = candidates[i];
-			res.add(candidate);
-			combinationSumHelper(candidates, target - candidate, res, i, output);
-			res.remove(res.size() - 1);
+			res.add(candidates[i]);
+			combinationSumHelper(candidates, target - candidates[i], res, i, tc + 1, output);
+			res.remove(tc);
 		}
 	}
 }

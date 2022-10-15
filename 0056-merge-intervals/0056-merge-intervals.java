@@ -10,13 +10,8 @@ class Solution {
 		int max = intervals[0][1];
 
 		for (int[] interval : intervals) {
-			if (interval[0] == min) {
+			if (interval[0] <= max)
 				max = Math.max(interval[1], max);
-			}
-
-			else if (interval[0] <= max) {
-				max = Math.max(interval[1], max);
-			}
 
 			else {
 				list.add(new int[]{min, max});

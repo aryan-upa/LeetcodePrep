@@ -11,14 +11,9 @@ class Solution {
 		return output;
 	}
 
-	public void permuteUniqueHelper(int[] freq, ArrayList<String> res, int tC, int cCount, List<List<Integer>> output) {
+	public void permuteUniqueHelper(int[] freq, ArrayList<Integer> res, int tC, int cCount, List<List<Integer>> output) {
 		if (cCount == tC) {
-			ArrayList<Integer> temp = new ArrayList<>();
-
-			for (String s : res)
-				temp.add(Integer.parseInt(s));
-
-			output.add(temp);
+			output.add(List.copyOf(res));
 			return;
 		}
 
@@ -26,7 +21,7 @@ class Solution {
 			if (freq[i] > 0) {
 				freq[i] --;
 
-				res.add("" + (i - 10));
+				res.add(i - 10);
 				permuteUniqueHelper(freq, res, tC, cCount + 1, output);
 				res.remove(cCount);
 

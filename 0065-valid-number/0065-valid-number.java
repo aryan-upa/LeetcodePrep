@@ -1,9 +1,10 @@
 class Solution {
 	public boolean isNumber(String s) {
-		if (s.indexOf('e') < 0 && s.indexOf('E') < 0)
+        s = s.toLowerCase();
+        
+		if (s.indexOf('e') < 0)
 			return isValidDecimal(s);
 		else {
-            s = s.toLowerCase();
             int eCount = 0;
 			for (int i = 0; i < s.length(); i ++)
                 if (s.charAt(i) == 'e')

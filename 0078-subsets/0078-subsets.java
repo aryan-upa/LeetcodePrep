@@ -6,14 +6,12 @@ class Solution {
 	}
 
 	public void generateSubsets(int[] nums, int k, ArrayList<Integer> res, List<List<Integer>> output) {
-		if (k == nums.length) {
-			output.add(List.copyOf(res));
-			return;
+		output.add(List.copyOf(res));
+		for (int i = k; i < nums.length; i ++) {
+			res.add(nums[i]);
+			generateSubsets(nums, i + 1, res, output);
+			res.remove(res.size() - 1);
 		}
-
-		generateSubsets(nums, k +1, res, output);
-		res.add(nums[k]);
-		generateSubsets(nums, k + 1,  res, output);
-		res.remove(res.size() - 1);
 	}
+
 }

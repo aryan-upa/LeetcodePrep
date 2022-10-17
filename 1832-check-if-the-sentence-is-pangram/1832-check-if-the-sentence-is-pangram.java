@@ -1,7 +1,8 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
         boolean[] isPresent = new boolean[26];
-        for (int i = 0; i < sentence.length(); i ++)
+        int len = sentence.length();
+        for (int i = 0; i < len; i ++)
             isPresent[sentence.charAt(i) - 'a'] = true;
         
         for (int i = 0; i < 26; i ++)

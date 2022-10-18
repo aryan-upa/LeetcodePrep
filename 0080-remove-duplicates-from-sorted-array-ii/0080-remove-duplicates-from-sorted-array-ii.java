@@ -10,7 +10,7 @@ class Solution {
 			if (nums[sp] == currDigit)
 				count ++;
 
-			else if (nums[sp] != currDigit) {
+			else {
 				nums[fp] = currDigit;
                 if (count > 1)
                     nums[fp + 1] = currDigit;

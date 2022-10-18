@@ -12,8 +12,7 @@ class Solution {
 
 			else {
 				nums[fp] = currDigit;
-                if (count > 1)
-                    nums[fp + 1] = currDigit;
+                nums[fp + (count > 1 ? 1 : 0)] = currDigit;
 				fp += Math.min(count, 2);
 				currDigit = nums[sp];
                 count = 1;
@@ -23,8 +22,7 @@ class Solution {
 		}
         
         nums[fp] = currDigit;
-        if (count > 1)
-            nums[fp + 1] = currDigit;
+        nums[fp + (count > 1 ? 1 : 0)] = currDigit;
         fp += Math.min(count, 2);
         
 		return fp;

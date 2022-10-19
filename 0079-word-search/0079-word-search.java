@@ -15,29 +15,25 @@ class Solution {
 	}
 
 	public void existHelper(char[][] board, String word, int let, int x, int y) {
-		if (board[x][y] == word.charAt(let)) {
-			board[x][y] ^= 256;
+        
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] != word.charAt(let))
+            return;
+        
+        board[x][y] ^= 256;
 
-			let += 1;
+        let += 1;
+        
+        if (let == wordLen) {
+            isFound = true;
+            return;
+        }
+        
+        int[] r = {-1, 1, 0, 0};
+        int[] c = {0, 0, -1, 1};
 
-			if (let == wordLen) {
-				isFound = true;
-				return;
-			}
-
-			if (x > 0 && !isFound)
-				existHelper(board, word, let, x - 1, y);
-
-			if (x < board.length - 1 && !isFound)
-				existHelper(board, word, let, x + 1, y);
-
-			if (y > 0 && !isFound)
-				existHelper(board, word, let, x, y - 1);
-
-			if (y < board[0].length - 1 && !isFound)
-				existHelper(board, word, let, x, y + 1);
-
-			board[x][y] ^= 256;
-		}
-	}
+        for (int i = 0; i < c.length; i ++)
+            existHelper(board, word, let, x + r[i], y + c[i]);
+        
+        board[x][y] ^= 256;
+    }
 }

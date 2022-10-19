@@ -28,8 +28,8 @@ class Solution {
 			return;
 		}
 
-		for (int[] i : cordEdit)
-			existHelper(board, word, let, x + i[0], y + i[1]);
+		for (int i = 0; i < 4; i ++)
+			existHelper(board, word, let, x + cordEdit[i][0], y + cordEdit[i][1]);
 
 		board[x][y] ^= 256;
 	}

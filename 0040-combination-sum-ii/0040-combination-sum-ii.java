@@ -2,11 +2,11 @@ class Solution {
 	public List<List<Integer>> combinationSum2(int[] candidates, int target) {
 		Arrays.sort(candidates);
 		List<List<Integer>> output = new ArrayList<>();
-		combinationSumHelper(candidates, target, 0, new ArrayList<>(), output);
+		combinationSumHelper(candidates, target, 0, new ArrayList<>(), 0, output);
 		return output;
 	}
 
-	public void combinationSumHelper(int[] candidates, int target, int k, ArrayList<Integer> res, List<List<Integer>> output) {
+	public void combinationSumHelper(int[] candidates, int target, int k, ArrayList<Integer> res, int added, List<List<Integer>> output) {
 		if (target < 0)
 			return;
 
@@ -20,8 +20,8 @@ class Solution {
 				continue;
 
 			res.add(candidates[i]);
-			combinationSumHelper(candidates, target - candidates[i], i + 1, res, output);
-			res.remove(res.size() - 1);
+			combinationSumHelper(candidates, target - candidates[i], i + 1, res, added+1, output);
+			res.remove(added);
 		}
 	}
 

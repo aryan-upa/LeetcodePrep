@@ -16,7 +16,6 @@ class Solution {
 		}
 
 		for (int i = k; i < candidates.length; i ++) {
-            if (candidates[i] > target) return;
 			if (i!= k && candidates[i] == candidates[i-1])
 				continue;
 

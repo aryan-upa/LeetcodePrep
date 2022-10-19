@@ -14,22 +14,23 @@ class Solution {
 		return isFound;
 	}
 
+            
+    static int[] r = {-1, 1, 0, 0};
+    static int[] c = {0, 0, -1, 1};
+
+    
 	public void existHelper(char[][] board, String word, int let, int x, int y) {
         
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] != word.charAt(let))
+        if (y < 0 || x < 0 || x >= board.length || y >= board[0].length || board[x][y] != word.charAt(let))
             return;
         
         board[x][y] ^= 256;
-
         let += 1;
         
         if (let == wordLen) {
             isFound = true;
             return;
         }
-        
-        int[] r = {-1, 1, 0, 0};
-        int[] c = {0, 0, -1, 1};
 
         for (int i = 0; i < c.length; i ++)
             existHelper(board, word, let, x + r[i], y + c[i]);

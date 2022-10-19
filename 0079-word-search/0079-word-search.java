@@ -4,12 +4,11 @@ class Solution {
     
 	public boolean exist(char[][] board, String word) {
 		isFound = false;
-
 		wordLen = word.length();
-		for (int i = 0; i < board.length && !isFound; i ++) {
+
+        for (int i = 0; i < board.length; i ++)
 			for (int j = 0; j < board[0].length && !isFound; j ++)
 				existHelper(board, word, 0, i, j);
-		}
 
 		return isFound;
 	}

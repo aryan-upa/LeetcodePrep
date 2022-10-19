@@ -14,26 +14,23 @@ class Solution {
 	}
 
             
-    static int[] r = {-1, 1, 0, 0};
-    static int[] c = {0, 0, -1, 1};
+	static int[][] cordEdit = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-    
 	public void existHelper(char[][] board, String word, int let, int x, int y) {
-        
-        if (y < 0 || x < 0 || x >= board.length || y >= board[0].length || board[x][y] != word.charAt(let))
-            return;
-        
-        board[x][y] ^= 256;
-        let += 1;
-        
-        if (let == wordLen) {
-            isFound = true;
-            return;
-        }
+		if (y < 0 || x < 0 || x >= board.length || y >= board[0].length || board[x][y] != word.charAt(let))
+			return;
 
-        for (int i = 0; i < c.length; i ++)
-            existHelper(board, word, let, x + r[i], y + c[i]);
-        
-        board[x][y] ^= 256;
-    }
+		board[x][y] ^= 256;
+		let += 1;
+
+		if (let == wordLen) {
+			isFound = true;
+			return;
+		}
+
+		for (int[] i : cordEdit)
+			existHelper(board, word, let, x + i[0], y + i[1]);
+
+		board[x][y] ^= 256;
+	}
 }

@@ -5,24 +5,21 @@ class Solution {
 		if (len1 == 0 || len2 == 0)
 			return len1 > 0 ? num1 : num2;
 
-		num1 = reverse(num1);
-		num2 = reverse(num2);
+        StringBuilder res = new StringBuilder();
 
-		StringBuilder res = new StringBuilder();
-
-		int i = 0, j = 0, sum = 0, carry = 0;
-		while (i < len1 || j < len2) {
+		int i = len1 - 1, j = len2 - 1, sum = 0, carry = 0;
+		while (i >= 0 || j >= 0) {
 			sum = 0;
 
-			if (i < len1) sum = num1.charAt(i) - '0';
-			if (j < len2) sum += num2.charAt(j) - '0';
+			if (i >= 0) sum = num1.charAt(i) - '0';
+			if (j >= 0) sum += num2.charAt(j) - '0';
 			sum += carry;
 
 			res.append(sum % 10);
 			carry = sum / 10;
 
-			i ++;
-			j ++;
+			i --;
+			j --;
 		}
 
         if (carry != 0)

@@ -11,8 +11,8 @@ class Solution {
 		while (i >= 0 || j >= 0) {
 			sum = 0;
 
-			if (i >= 0) sum = num1.charAt(i) - '0';
-			if (j >= 0) sum += num2.charAt(j) - '0';
+			sum += i >= 0 ? num1.charAt(i) - '0' : 0;
+			sum += j >= 0 ? num2.charAt(j) - '0' : 0;
 			sum += carry;
 
 			res.append(sum % 10);
@@ -27,11 +27,4 @@ class Solution {
         
 		return res.reverse().toString();
 	}
-
-	public static String reverse(String inp) {
-		StringBuilder sb = new StringBuilder(inp);
-		sb.reverse();
-		return sb.toString();
-	}
-
 }

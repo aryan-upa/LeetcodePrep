@@ -9,8 +9,6 @@ class Solution {
 			sum = digits[pos] + carry;
 			digits[pos] = sum % 10;
 			carry = sum / 10;
-            if (carry == 0)
-                break;
 			pos --;
 		}
 

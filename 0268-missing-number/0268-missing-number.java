@@ -1,22 +1,10 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int xor = 0, max = nums.length;
-
-        for (int i = 0; i < max; i ++) {
-            xor ^= i;
-            xor ^= nums[i];
-        }
+        int s = nums.length * (nums.length + 1) / 2;
         
-        return xor ^= max;
+        for (int i = 0; i < nums.length; i ++)
+            s -= nums[i];
         
-//         for (int i = 0; i <= max; i ++)
-//             xor ^= i;
-        
-//         System.out.println(xor);
-        
-//         for (int i = 0; i <= max - 1; i ++)
-//             xor ^= nums[i];
-        
-//         return xor;
+        return s;
     }
 }

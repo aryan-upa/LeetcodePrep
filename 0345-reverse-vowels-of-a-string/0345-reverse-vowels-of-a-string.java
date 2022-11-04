@@ -7,17 +7,11 @@ class Solution {
         char[] s = str.toCharArray();
         
         while (fp < lp) {
-            while(vowel.indexOf(s[fp]) < 0) {
+            while(vowel.indexOf(s[fp]) < 0 && fp < lp)
                 fp ++;
-                if (fp >= lp)
-                    break;
-            }
-            
-            while(vowel.indexOf(s[lp]) < 0) {
+
+            while(vowel.indexOf(s[lp]) < 0 && fp < lp)
                 lp --;
-                if (fp >= lp)
-                    break;
-            }
             
             if (fp < lp) {
                 char temp = s[fp];

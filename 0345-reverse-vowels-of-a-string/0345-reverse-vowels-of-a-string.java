@@ -7,10 +7,10 @@ class Solution {
         char[] s = str.toCharArray();
         
         while (fp < lp) {
-            while(vowel.indexOf(s[fp]) < 0 && fp < lp)
+            while(fp < lp && vowel.indexOf(s[fp]) < 0)
                 fp ++;
 
-            while(vowel.indexOf(s[lp]) < 0 && fp < lp)
+            while(fp < lp && vowel.indexOf(s[lp]) < 0)
                 lp --;
             
             if (fp < lp) {

@@ -1,55 +1,43 @@
 class Solution {
-	public String minWindow(String s, String t) {
-		if (s.length() < t.length())
-			return "";
-
-		Map<Character, Integer> map = new HashMap<>();
-		Set<Character> set = new HashSet<>();
-
-		for (int i = 0; i < t.length(); i ++) {
-			map.put(t.charAt(i), map.getOrDefault(t.charAt(i), 0) + 1);
-			set.add(t.charAt(i));
-		}
-
-		int l, h, count;
-		l = h = 0;
-
-		boolean hasCountBeenZero = false;
-		String res = s;
-
-		int resLen = s.length();
-		count = map.size();
-
-		while (h < s.length()) {
-			char c = s.charAt(h);
-			if (set.contains(c)) {
-				int mapGet = map.get(c);
-				map.put(c, mapGet - 1);
-				count = count - ((mapGet - 1) == 0 ? 1 : 0);
-			}
-
-			while (l < s.length() && (count == 0 || !set.contains(s.charAt(l)))) {
-
-				if (count == 0) {
-					hasCountBeenZero = true;
-					res = (h - l + 1) < resLen ? s.substring(l, h+1) : res;
-					resLen = res.length();
-				}
-
-				char c1 = s.charAt(l);
-				if (set.contains(s.charAt(l))) {
-					int mapGet = map.get(c1);
-					map.put(c1, mapGet + 1);
-					if ((mapGet+1) > 0)
-						count ++;
-				}
-
-				l ++;
-			}
-
-			h ++;
-		}
-
-		return hasCountBeenZero ? res : "";
-	}
+  public String minWindow(String str, String t) {
+      int[] map = new int[256];
+      for(char c: t.toCharArray()){
+        map[c - 'A']++;
+      }
+      
+      int minLen = Integer.MAX_VALUE, minStart = 0;
+  
+      int n = t.length();
+      char[] sc = str.toCharArray();
+      int s = 0, e = 0;
+      while(e < sc.length){
+        int ie = sc[e] - 'A';
+        map[ie]--;
+        if(map[ie] >= 0){
+          n--; 
+        }
+        
+        if(n == 0){
+          int is = sc[s] - 'A';
+          while(map[is] < 0){
+            map[is]++;
+            s++;
+            is = sc[s] - 'A';  
+          }
+          
+          int len = e - s + 1;
+          if(len < minLen){
+            minLen = len;
+            minStart = s;
+          }
+          
+          map[is]++;
+          s++;
+          n++;
+        }
+        e++;
+      }
+  
+      return minLen == Integer.MAX_VALUE ? "" : str.substring(minStart, minStart + minLen);
+    }
 }

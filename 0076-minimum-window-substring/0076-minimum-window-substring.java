@@ -12,26 +12,30 @@ class Solution {
 		l = h = 0;
 		boolean hasCountBeenZero = false;
 		String res = s;
+        int resLen = s.length();
 		count = map.size();
 
 		while (h < s.length()) {
 			char c = s.charAt(h);
 			if (map.containsKey(c)) {
-				map.put(c, map.get(c) - 1);
-				count = count - (map.get(c) == 0 ? 1 : 0);
+                int mapGet = map.get(c);
+				map.put(c, mapGet - 1);
+				count = count - ((mapGet - 1) == 0 ? 1 : 0);
 			}
 
 			while (l < s.length() && (count == 0 || !map.containsKey(s.charAt(l)))) {
 
 				if (count == 0) {
 					hasCountBeenZero = true;
-					res = s.substring(l, h+1).length() < res.length() ? s.substring(l, h+1) : res;
+					res = (h - l + 1) < resLen ? s.substring(l, h+1) : res;
+                    resLen = res.length();
 				}
 
 				char c1 = s.charAt(l);
 				if (map.containsKey(s.charAt(l))) {
-					map.put(c1, map.get(c1) + 1);
-					if (map.get(c1) > 0)
+                    int mapGet = map.get(c1);
+					map.put(c1, mapGet + 1);
+					if ((mapGet+1) > 0)
 						count ++;
 				}
 

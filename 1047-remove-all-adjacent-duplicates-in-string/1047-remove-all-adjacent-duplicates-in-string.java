@@ -11,11 +11,7 @@ class Solution {
                 stack[++pos] = s.charAt(i);
 		}
 
-		char[] res = new char[pos + 1];
-		for (int i = res.length - 1; i >= 0; i --)
-			res[i] = stack[pos--];
-
-		return new String(res);
+		return new String(Arrays.copyOf(stack, pos+1));
 	}
 
 }

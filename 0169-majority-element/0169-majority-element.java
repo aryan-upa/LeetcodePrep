@@ -2,17 +2,17 @@
 
 class Solution {
     public int majorityElement(int[] nums) {
-        int maj_ind = 0;
+        int maj = nums[0];
         int count = 1;
         
         for (int i = 1; i < nums.length; i ++) {
-            count += (nums[i] == nums[maj_ind]) ? 1 : -1;
+            count += (nums[i] == maj) ? 1 : -1;
             if (count == 0) {
                 count = 1;
-                maj_ind = i;
+                maj = nums[i];
             }
         }
         
-        return nums[maj_ind];
+        return maj;
     }
 }

@@ -7,14 +7,11 @@ class Solution {
         vowels.add('i');
         vowels.add('o');
         vowels.add('u');
-        vowels.add('A');
-        vowels.add('E');
-        vowels.add('I');
-        vowels.add('O');
-        vowels.add('U');
     }
     
     public boolean halvesAreAlike(String s) {
+        s = s.toLowerCase();
+        
         int l = 0;
         int h = s.length() - 1;
         int count = 0;
@@ -24,6 +21,7 @@ class Solution {
                 count ++;
             if (vowels.contains(s.charAt(h)))
                 count --;
+     
             l ++;
             h --;
         }

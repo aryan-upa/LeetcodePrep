@@ -4,7 +4,8 @@ class Solution {
         String curr = "";
         int count = 0;
         
-        for (char c : s.toCharArray()) {
+        for (int i = 0; i < s.length(); i ++) {
+            char c = s.charAt(i);
             count += c == '(' ? 1 : -1;
             if (count == 0) {
                 res += curr.substring(1);

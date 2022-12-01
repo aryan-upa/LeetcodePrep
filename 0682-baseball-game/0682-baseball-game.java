@@ -8,27 +8,22 @@
 
 class Solution {
     public int calPoints(String[] operations) {
-        Stack<Integer> stack = new Stack<>();
-        
-        for (String op : operations) {
-            if (op.equals("D"))
-                stack.push(stack.peek()*2);
-            else if (op.equals("C"))
-                stack.pop();
-            else if (op.equals("+")) {
-                int num1 = stack.pop();
-                int s = num1 + stack.peek();
-                stack.push(num1);
-                stack.push(s);
-            }
-            else
-                stack.push(Integer.valueOf(op));
-        }
-        
-        int sum = 0;
-        while (!stack.isEmpty())
-            sum += stack.pop();
-        
-        return sum;
-    }
+		int[] stack = new int[operations.length];
+
+		int i = -1;
+		for (String op : operations) {
+			switch (op) {
+				case "D" -> {stack[i+1] = stack[i] * 2; i+=1;}
+				case "C" -> i-=1;
+				case "+" -> {stack[i+1] = stack[i] + stack[i - 1]; i += 1;}
+				default -> stack[++i] = Integer.parseInt(op);
+			}
+		}
+
+		int sum = 0;
+		for (int j = i; j >= 0; j --)
+			sum += stack[j];
+
+		return sum;
+	}
 }

@@ -14,18 +14,21 @@ class Solution {
         
         int[] set = new int[26];
         int[] count1 = new int[26];
+        int[] count2 = new int[26];
+
         char c;
         for (int i = 0; i < l1; i++) {
             c = word1.charAt(i);
+            
             set[c - 'a'] = 1;
             count1[c - 'a']++;
+
+            c = word2.charAt(i);
+            count2[c - 'a']++;            
         }
         
-        int[] count2 = new int[26];
         for (int i = 0; i < l2; i++) {
-            c = word2.charAt(i);
-            if (set[c - 'a'] == 0) return false;            
-            count2[c - 'a']++;            
+            if (set[word2.charAt(i) - 'a'] == 0) return false;            
         }
         
         Arrays.sort(count1);

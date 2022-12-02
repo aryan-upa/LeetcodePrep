@@ -1,6 +1,6 @@
 class Solution {
     public List<List<Integer>> minimumAbsDifference(int[] arr) {
-        int[] cpy = Arrays.copyOf(arr, arr.length);
+        int[] cpy = arr;
         Arrays.sort(cpy);
         
         int minAbsDiff = Integer.MAX_VALUE;
@@ -14,12 +14,15 @@ class Solution {
             List<Integer> pair = new ArrayList<>();
             int pos = i + 1;
             pair.add(cpy[i]);
-            while (pos < cpy.length && Math.abs(cpy[pos] - cpy[i]) <= minAbsDiff) {
-                if (Math.abs(cpy[pos] - cpy[i]) == minAbsDiff) {
+            while (pos < cpy.length) {
+                int diff = Math.abs(cpy[pos] - cpy[i]);
+                if (diff == minAbsDiff) {
                     pair.add(cpy[pos]);
                     res.add(pair);
                     break;
                 }
+                else if (diff > minAbsDiff)
+                    break;
                 pos ++;
             }
         }

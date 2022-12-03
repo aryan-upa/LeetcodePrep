@@ -5,20 +5,18 @@ import java.util.List;
 class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
 		// trying the O(n) approach
-
-		Hashtable<Integer, Boolean> table = new Hashtable<>();
-		for(int i = 0; i < nums.length; i ++)
-			table.putIfAbsent(i + 1, false);
-
-		for (int num : nums) 
-			table.put(num, true);
-		
+		boolean[] table = new boolean[nums.length + 1];
+			
+		for (int num : nums)
+			table[num] = true;
+			
 		List<Integer> res = new ArrayList<>();
-		
-		for (int key : table.keySet())
-			if (!table.get(key))
-				res.add(key);
+
+		for (int i = 1; i < table.length; i ++)
+			if (!table[i])
+				res.add(i);
 		
 		return res;
+
     }
 }

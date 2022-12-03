@@ -4,12 +4,8 @@ class Solution {
         int curr = 0;
         
         for (int i = 0; i < nums.length; i ++) {
-            if (nums[i] == 1)
-                curr ++;
-            else {
-                max = max > curr ? max : curr;
-                curr = 0;
-            }
+            curr = nums[i] == 1 ? curr + 1 : 0;
+            max = max > curr ? max : curr;
         }
         
         max = max > curr ? max : curr; 

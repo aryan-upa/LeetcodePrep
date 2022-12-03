@@ -4,19 +4,18 @@ import java.util.List;
 
 class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
-		// trying the O(n) approach
-		boolean[] table = new boolean[nums.length + 1];
-			
-		for (int num : nums)
-			table[num] = true;
-			
-		List<Integer> res = new ArrayList<>();
+		// The most optimal O(n) approach with constant space (neglecting space req for result).
+        int idx;
+		for (int i = 0; i < nums.length; i ++) {
+            idx = nums[i] < 0 ? -nums[i] : nums[i];
+			nums[idx - 1] *= nums[idx - 1] > 0 ? -1 : 1;
+        }
 
-		for (int i = 1; i < table.length; i ++)
-			if (!table[i])
-				res.add(i);
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < nums.length; i ++)
+			if (nums[i] > 0)
+				list.add(i+1);
 		
-		return res;
-
+		return list;
     }
 }

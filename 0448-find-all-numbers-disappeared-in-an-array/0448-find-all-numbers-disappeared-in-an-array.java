@@ -6,10 +6,8 @@ class Solution {
         int seek = 1;
         ArrayList<Integer> res = new ArrayList<>();
 
-        int maxVal = 0;
-        for (int i = 0; i < nums.length; i ++)
-            maxVal = maxVal > nums[i] ? maxVal : nums[i];
-        
+        int maxVal = nums[nums.length - 1];
+
         for (int i = 0; i < nums.length; i ++) {
             if (nums[i] <= seek) {
                 seek += nums[i] == seek ? 1 : 0;
@@ -19,12 +17,8 @@ class Solution {
                 res.add(seek++);
             seek ++;
         }
-        
-        if (maxVal == nums.length)
-            return res;
-        
+
         while (maxVal < nums.length) res.add(++maxVal);
-        
         return res;
     }
 }

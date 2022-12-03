@@ -1,24 +1,24 @@
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+
 class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
-        // trying the n* log(n) approach
-        
-        Arrays.sort(nums); // not a good approach to modify the input data.
-        int seek = 1;
-        ArrayList<Integer> res = new ArrayList<>();
+		// trying the O(n) approach
 
-        int maxVal = nums[nums.length - 1];
+		Hashtable<Integer, Boolean> table = new Hashtable<>();
+		for(int i = 0; i < nums.length; i ++)
+			table.putIfAbsent(i + 1, false);
 
-        for (int i = 0; i < nums.length; i ++) {
-            if (nums[i] <= seek) {
-                seek += nums[i] == seek ? 1 : 0;
-                continue;
-            }
-            while (seek < nums[i])
-                res.add(seek++);
-            seek ++;
-        }
-
-        while (maxVal < nums.length) res.add(++maxVal);
-        return res;
+		for (int num : nums) 
+			table.put(num, true);
+		
+		List<Integer> res = new ArrayList<>();
+		
+		for (int key : table.keySet())
+			if (!table.get(key))
+				res.add(key);
+		
+		return res;
     }
 }

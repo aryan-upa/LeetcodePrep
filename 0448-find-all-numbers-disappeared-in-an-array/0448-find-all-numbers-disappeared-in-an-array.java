@@ -11,7 +11,7 @@ class Solution {
 			nums[idx - 1] *= nums[idx - 1] > 0 ? -1 : 1;
         }
 
-		List<Integer> list = new ArrayList<>();
+		List<Integer> list = new ArrayList<>(nums.length);
 		for (int i = 0; i < nums.length; i ++)
 			if (nums[i] > 0)
 				list.add(i+1);

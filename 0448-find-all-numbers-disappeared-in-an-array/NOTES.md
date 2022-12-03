@@ -1,6 +1,8 @@
-### `n x log (n)` Approach
+`...space taken by resulting list is not counted...`
 ​
-```
+### O(n log n) and uses O(1) space Approach
+​
+```java
 public List<Integer> findDisappearedNumbers(int[] nums) {
 // trying the n* log(n) approach
 ​
@@ -23,4 +25,8 @@ seek ++;
 while (maxVal < nums.length) res.add(++maxVal);
 return res;
 }
+```
+​
+### O(n) approach but uses O(n) space.
+​
 ```

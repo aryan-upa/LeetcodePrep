@@ -1,14 +1,22 @@
 class Solution {
     public boolean detectCapitalUse(String word) {
-        if (word.charAt(0) >= 65 && word.charAt(0) < 97) {
-            if (word.toUpperCase().equals(word))
-                return true;
-            else if (word.substring(1).toLowerCase().equals(word.substring(1)))
-                return true;
-            else
-                return false;
+        if (word.length() <= 1)
+            return true;
+        
+        char[] s = word.toCharArray();
+        if (s[0] >= 65 && s[0] < 97) {
+            int min = s[1] >= 65 && s[1] <= 90 ? 65 : 97;
+            int max = s[1] >= 65 && s[1] <= 90 ? 90 : 122;
+            
+            for (int i = 1; i < s.length; i ++)
+                if (s[i] > max || s[i] < min)
+                    return false;
         } else {
-            return word.toLowerCase().equals(word);
+            for (int i = 1; i < s.length; i ++)
+                if (!(s[i] >= 97 && s[i] <= 122))
+                    return false;
         }
+        
+        return true;
     }
 }

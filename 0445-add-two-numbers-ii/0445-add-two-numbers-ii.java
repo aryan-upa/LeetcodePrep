@@ -29,8 +29,12 @@ class Solution {
         ListNode res = null;
         int carry = 0;
         
-        while (!s1.isEmpty() && !s2.isEmpty()) {
-            int s = s1.pop().val + s2.pop().val + carry;
+        while (!s1.isEmpty() || !s2.isEmpty()) {
+            int s = carry;
+            
+            s += s1.isEmpty() ? 0 : s1.pop().val;
+            s += s2.isEmpty() ? 0 : s2.pop().val;
+
             ListNode add = new ListNode(s % 10);
             
             add.next = res;
@@ -39,26 +43,6 @@ class Solution {
             carry = s / 10;
         }
         
-        while (!s1.isEmpty()) {
-            int s = s1.pop().val + carry;
-            ListNode add = new ListNode(s % 10);
-            
-            add.next = res;
-            res = add;
-
-            carry = s / 10;            
-        }
-        
-        while (!s2.isEmpty()) {
-            int s = s2.pop().val + carry;
-            ListNode add = new ListNode(s % 10);
-            
-            add.next = res;
-            res = add;
-
-            carry = s / 10;            
-        }
-
         if (carry != 0) {
             ListNode nn = new ListNode(1);
             nn.next = res;

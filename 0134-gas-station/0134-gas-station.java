@@ -6,10 +6,11 @@ class Solution {
 
         for(int i = 0; i < cost.length; i++) {
             total += (gas[i] - cost[i]);
-            curr+= (gas[i] - cost[i]);
+            curr += (gas[i] - cost[i]);
+            
             if (curr < 0) {
                 curr = 0;
-                s = i+1;
+                s = i + 1;
             }
         }
 

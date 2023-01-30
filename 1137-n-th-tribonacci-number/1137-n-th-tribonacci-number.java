@@ -4,19 +4,19 @@ class Solution {
             return 0;
         if (n == 1 || n == 2)
             return 1;
-        
-        int t0 = 0;
-        int t1 = 1;
-        int t2 = 1;        
-        int t3 = 0;
 
+        int[] arr = new int[4];
+        
+        arr[1] = 1;
+        arr[2] = 1;
+        
         for (int i = 3; i <= n; i ++) {
-            t3 = t0 + t1 + t2;
-            t0 = t1;
-            t1 = t2;
-            t2 = t3;
+            arr[3] = arr[0] + arr[1] + arr[2];
+            arr[0] = arr[1];
+            arr[1] = arr[2];
+            arr[2] = arr[3];
         }
         
-        return t3;
+        return arr[3];
     }
 }

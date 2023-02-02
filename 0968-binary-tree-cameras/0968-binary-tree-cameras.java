@@ -34,34 +34,28 @@ class Solution {
 	}
 
 	public int minCameraCover(TreeNode root) {
-		CameraData rootData = createCameraData(root);
+        int rootStatus = createCamera(root);
         
-        if (rootData.status == -1)
+        if (rootStatus == -1)
             count += 1;
 
         return count;
 	}
 
-	public CameraData createCameraData (TreeNode root) {
+	public int createCamera (TreeNode root) {
 		if (root == null)
-			return new CameraData(null);
-
-		CameraData left = createCameraData (root.left);
-		CameraData right = createCameraData (root.right);
-
-		CameraData node = new CameraData(root);
+			return 1;
 		
-		if (left.status == -1 || right.status == -1) {
+		int leftStatus = createCamera(root.left);
+		int rightStatus = createCamera(root.right);
+		
+		if (leftStatus == -1 || rightStatus == -1) {
 			count += 1;
-			node.status = 0;
-		} 
-		else if (left.status == 1 && right.status == 1) {
-			node.status = -1;
-		} 
-		else {
-			node.status = 1;
+			return 0;
 		}
-		
-		return node;
+		else if (leftStatus == 1 && rightStatus == 1)
+			return -1;
+		else
+			return 1;
 	}
 }

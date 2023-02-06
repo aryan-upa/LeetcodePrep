@@ -1,10 +1,8 @@
 class Solution {
     public int[] shuffle(int[] nums, int n) {
         for (int i = 0; i < n; i ++) {
-            int store = nums[i];
-            store <<= 10;
-            store |= nums[i + n];
-            nums[i] = store;
+            nums[i] <<= 10;
+            nums[i] |= nums[i + n];
         }
         
         for (int i = n - 1; i >= 0; i --) {

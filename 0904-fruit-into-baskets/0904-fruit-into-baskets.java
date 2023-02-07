@@ -12,7 +12,7 @@ class Solution {
 
 			fruitTypeAndCount.put(fruits[end], fruitTypeAndCount.get(fruits[end]) + 1);
 
-			while (fruitTypeAndCount.keySet().size() > 2) {
+			while (fruitTypeAndCount.size() > 2) {
 				fruitTypeAndCount.put(fruits[start], fruitTypeAndCount.get(fruits[start]) - 1);
 				if (fruitTypeAndCount.get(fruits[start]) == 0)
 					fruitTypeAndCount.remove(fruits[start]);
@@ -24,6 +24,5 @@ class Solution {
 		}
 
 		return maxBasket;
-
     }
 }

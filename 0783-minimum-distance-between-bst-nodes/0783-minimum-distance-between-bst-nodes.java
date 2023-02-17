@@ -14,26 +14,27 @@
  * }
  */
 class Solution {
+    
+    static int minDiff;
+    TreeNode prevNode;
+    
 	public int minDiffInBST(TreeNode root) {
-        ArrayList<Integer> list = new ArrayList<>();
-        inorderTraversal (root, list);
-        
-        int len = list.size();
-        int dif = Integer.MAX_VALUE;
-
-        for (int i = 1; i < len; i ++)
-            dif = Math.min(dif, list.get(i) - list.get(i-1));
-        
-        return dif;
+        minDiff = Integer.MAX_VALUE;
+        inorderTraversal(root);    
+        return minDiff;
 	}
     
-    private void inorderTraversal (TreeNode node, List<Integer> list) {
+    private void inorderTraversal (TreeNode node) {
         if (node == null)
             return;
         
-        inorderTraversal(node.left, list);
-        list.add(node.val);
-        inorderTraversal(node.right, list);
+        inorderTraversal(node.left);
+        
+        if (prevNode != null)
+            minDiff = Math.min(minDiff, node.val - prevNode.val);
+        
+        prevNode = node;
+        inorderTraversal(node.right);
     }
     
 }

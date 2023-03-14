@@ -14,26 +14,25 @@
  * }
  */
 class Solution {
+    
+    int sum;
+    
     public int sumNumbers(TreeNode root) {
-        ArrayList<String> list = new ArrayList<>();
-        getNumbers(root, list, "");
-        
-        int sum = 0;
-        for (String num : list)
-            sum += Integer.parseInt(num);
+        sum = 0;
+        getNumbers(root, "");        
         return sum;
     }
     
-    public void getNumbers (TreeNode root, ArrayList<String> list, String num) {
+    public void getNumbers (TreeNode root, String num) {
         if (root == null)
             return;
         
         if (root.right == null && root.left == null) {
-            list.add(num + root.val);
+            sum += Integer.parseInt(num + root.val);
             return;
         }
         
-        getNumbers(root.left, list, num + root.val);
-        getNumbers(root.right, list, num + root.val);
+        getNumbers(root.left, num + root.val);
+        getNumbers(root.right, num + root.val);
     }
 }

@@ -24,15 +24,16 @@ class Solution {
     }
     
     public void getNumbers (TreeNode root, int num) {
-        if (root == null)
-            return;
+        if (root == null) return;
+        
+        int currSum = num*10 + root.val;
         
         if (root.right == null && root.left == null) {
-            sum += num*10 + root.val;
+            sum += currSum;
             return;
         }
         
-        getNumbers(root.left, num*10 + root.val);
-        getNumbers(root.right, num*10 + root.val);
+        getNumbers(root.left, currSum);
+        getNumbers(root.right, currSum);
     }
 }

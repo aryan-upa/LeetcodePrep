@@ -19,20 +19,20 @@ class Solution {
     
     public int sumNumbers(TreeNode root) {
         sum = 0;
-        getNumbers(root, "");        
+        getNumbers(root, 0);        
         return sum;
     }
     
-    public void getNumbers (TreeNode root, String num) {
+    public void getNumbers (TreeNode root, int num) {
         if (root == null)
             return;
         
         if (root.right == null && root.left == null) {
-            sum += Integer.parseInt(num + root.val);
+            sum += num*10 + root.val;
             return;
         }
         
-        getNumbers(root.left, num + root.val);
-        getNumbers(root.right, num + root.val);
+        getNumbers(root.left, num*10 + root.val);
+        getNumbers(root.right, num*10 + root.val);
     }
 }

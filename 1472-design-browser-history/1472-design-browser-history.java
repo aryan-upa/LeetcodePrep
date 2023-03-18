@@ -5,7 +5,7 @@ class BrowserHistory {
     private int boundary;
     
     public BrowserHistory (String homepage) {
-        history = new ArrayList<>();
+        history = new ArrayList<>(5000);
         
         history.add(homepage);
         pos = 0;

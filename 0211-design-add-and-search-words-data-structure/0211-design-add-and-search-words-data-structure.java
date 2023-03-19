@@ -1,9 +1,9 @@
 class Word {
-    Word[] children;
+    Map<Character, Word> children;
     boolean isWord;
     
     Word () {
-        children = new Word[26];
+        children = new HashMap<>(26);
         isWord = false;
     }
 }
@@ -19,11 +19,8 @@ class WordDictionary {
     public void addWord (String word) {
         Word curr = root;
         
-        for (char c : word.toCharArray()) {
-            if (curr.children[c - 'a'] == null)
-                curr.children[c - 'a'] = new Word();
-            curr = curr.children[c - 'a'];
-        }
+        for (char c : word.toCharArray())
+            curr = curr.children.computeIfAbsent(c, ch -> new Word());
         
         curr.isWord = true;
     }
@@ -41,12 +38,12 @@ class WordDictionary {
         
         if (word[idx] == '.') {
             for (int i = 0; i < 26; i ++)
-                if (searchHelper(word, node.children[i], idx + 1))
+                if (searchHelper(word, node.children.get((char) ('a' + i)), idx + 1))
                     return true;
             return false;
         }
         
-        return searchHelper (word, node.children[word[idx] - 'a'], idx + 1);
+        return searchHelper (word, node.children.get(word[idx]), idx + 1);
     }
 }
 

@@ -7,17 +7,16 @@ class Solution {
 		Map<Integer, Integer> mapFreq = new HashMap<>();
 
 		for (int i : nums1) {
-			if (mapFreq.containsKey(i))
-                mapFreq.put(i, mapFreq.get(i) + 1);
-            else
-                mapFreq.put(i, 1);
+			int v = mapFreq.computeIfAbsent(i, val -> 0);
+            mapFreq.put(i, v + 1);
 		}
 
 		ArrayList<Integer> intersection = new ArrayList<>();
 		for (int i : nums2) {
-			if (mapFreq.containsKey(i) && mapFreq.get(i) > 0) {
+            int fq = mapFreq.getOrDefault(i, 0);
+			if (fq > 0) {
 				intersection.add(i);
-				mapFreq.put(i, mapFreq.get(i) - 1);
+				mapFreq.put(i, fq - 1);
 			}
 		}
 		

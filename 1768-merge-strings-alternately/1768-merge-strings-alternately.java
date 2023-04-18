@@ -3,16 +3,18 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         int j = 0;
-        while (i < word1.length() && j < word2.length()) {
+        
+        int l1 = word1.length(), l2 = word2.length();
+        while (i < l1 && j < l2) {
             sb.append("" + word1.charAt(i) + word2.charAt(j));
             i += 1;
             j += 1;
         }
         
-        if (i < word1.length())
+        if (i < l1)
             sb.append(word1.substring(i));
         
-        if (j < word2.length())
+        if (j < l2)
             sb.append(word2.substring(j));
         
         return sb.toString();

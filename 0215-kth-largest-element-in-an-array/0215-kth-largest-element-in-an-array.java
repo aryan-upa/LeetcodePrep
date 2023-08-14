@@ -15,7 +15,7 @@ class Solution {
             right = new ArrayList<>(), 
             mid = new ArrayList<>();
         
-        int pivot = list.get(list.size() / 2);
+        int pivot = list.get(new Random().nextInt(list.size()));
         
         for (int el : list) {
             if (el > pivot) left.add(el);

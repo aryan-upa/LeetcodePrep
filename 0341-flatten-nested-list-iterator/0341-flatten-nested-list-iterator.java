@@ -20,7 +20,7 @@ public class NestedIterator implements Iterator<Integer> {
             prepareStack(list);
         }
 
-        return !stack.isEmpty(); // Check if there's more to iterate.
+        return !stack.isEmpty();
     }
 
     private void prepareStack(List<NestedInteger> nestedList) {
